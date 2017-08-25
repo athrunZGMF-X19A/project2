@@ -1,11 +1,12 @@
 package beans;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -26,9 +27,8 @@ public class BookBean {
 	private String genre;
 	
 	private int quantity;
-	
-	@ManyToOne
-	private UserBean user;
+
+	//private List<UserBean> user;
 	
 
 	public BookBean() {

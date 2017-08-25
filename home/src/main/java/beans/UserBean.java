@@ -1,12 +1,15 @@
 package beans;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
@@ -30,13 +33,12 @@ public class UserBean {
 	private String username;
 	@DecimalMin(value="0")
 	private int numberOfBooks;
-	@OneToMany
-	@JoinTable(name="CHECKOUT")
-	private BookBean book;
+	
+	private List<BookBean> book;
 	
 	public UserBean() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public int getId() {
@@ -63,11 +65,11 @@ public class UserBean {
 		this.numberOfBooks = numberOfBooks;
 	}
 
-	public BookBean getBook() {
+	public List<BookBean> getBook() {
 		return book;
 	}
 
-	public void setBook(BookBean book) {
+	public void setBook(List<BookBean> book) {
 		this.book = book;
 	}
 	
