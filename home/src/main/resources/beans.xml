@@ -11,9 +11,9 @@
 	<!-- datasource -->
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="" />
-		<property name="username" value="" />
-		<property name="password"  value="" />
+		<property name="url" value="#{systemEnvironment['DB_URL']}" />
+		<property name="username" value="Dewey_Duodecim" />
+		<property name="password"  value="Duodecim" />
 	
 	</bean>
 	<!-- sessionfactory -->
