@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class BookBean {
 	
 	@Id
-	@Column(name="ID")
+	@Column(name="BOOK_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int d3Id;
 	@NotBlank

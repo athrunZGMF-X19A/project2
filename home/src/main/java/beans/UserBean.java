@@ -15,12 +15,6 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * 
- * UserBean
- *
- */
-
 
 @Entity
 public class UserBean {
