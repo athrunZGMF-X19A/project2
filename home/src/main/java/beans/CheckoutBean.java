@@ -1,47 +1,42 @@
 package beans;
 
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.web.bind.annotation.Mapping;
-
-@Entity
+//@Entity
 public class CheckoutBean {
 	
+/*	
+	@ManyToOne()
+	private BookBean checkoutBookId;
 	
-	private int bookId;
 	
-	private int userId;
+	@ManyToOne
+	private UserBean checkoutUserId;
 	
+	@NotEmpty
 	private boolean checkedOut;
-	
 
-	public int getBookId() {
-		return bookId;
+	public BookBean getBookId() {
+		return checkoutBookId;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setBookId(BookBean bookId) {
+		this.checkoutBookId = bookId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public UserBean getUserId() {
+		return checkoutUserId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(UserBean userId) {
+		this.checkoutUserId = userId;
 	}
 
 	public boolean isCheckedOut() {
 		return checkedOut;
 	}
-
+	
+	//numeric boolean 0 is false 1 is true
 	public void setCheckedOut(boolean checkedOut) {
 		this.checkedOut = checkedOut;
-	}
+	}*/
 
 }

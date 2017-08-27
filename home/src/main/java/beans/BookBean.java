@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -17,33 +19,24 @@ public class BookBean {
 	@Column(name="BOOK_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int d3Id;
+	
 	@NotBlank
 	private String title;
+	
 	@NotBlank
 	private String author;
+	
 	@NotBlank
 	private String description;
+	
 	@NotBlank
 	private String genre;
 	
 	private int quantity;
-
-	//private List<UserBean> user;
 	
-
-	public BookBean() {
-		super();
-	}
-
-	public BookBean(int d3Id, String title, String author, String description, String genre, int quantity) {
-		super();
-		this.d3Id = d3Id;
-		this.title = title;
-		this.author = author;
-		this.description = description;
-		this.genre = genre;
-		this.quantity = quantity;
-	}
+	@ManyToOne(targetEntity=UserBean.class)
+	@JoinColumn(name="User_Id", referencedColumnName="USER_ID", nullable=false)
+	private List<UserBean> users;
 
 	public int getD3Id() {
 		return d3Id;
@@ -90,6 +83,28 @@ public class BookBean {
 	}
 
 	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public List<UserBean> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserBean> users) {
+		this.users = users;
+	}
+
+	public BookBean() {
+		super();
+	}
+
+	public BookBean(int d3Id, String title, String author, String description, String genre, int quantity) {
+		super();
+		this.d3Id = d3Id;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.genre = genre;
 		this.quantity = quantity;
 	}
 	

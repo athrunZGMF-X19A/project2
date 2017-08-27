@@ -1,15 +1,14 @@
 package beans;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
@@ -23,17 +22,17 @@ public class UserBean {
 	@Column(name="USER_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	@NotBlank
 	private String username;
+	
 	@DecimalMin(value="0")
 	private int numberOfBooks;
 	
-	private List<BookBean> book;
-	
-	public UserBean() {
-		super();
-		
-	}
+	@OneToMany(targetEntity=BookBean.class)
+	@JoinColumn(name="Book_Id", referencedColumnName="BOOK_ID", nullable=false)
+	private List<BookBean> books;
+
 	
 	public int getId() {
 		return id;
@@ -59,13 +58,27 @@ public class UserBean {
 		this.numberOfBooks = numberOfBooks;
 	}
 
-	public List<BookBean> getBook() {
-		return book;
+	public List<BookBean> getBooks() {
+		return books;
 	}
 
-	public void setBook(List<BookBean> book) {
-		this.book = book;
+	public void setBooks(List<BookBean> books) {
+		this.books = books;
 	}
+
+	public UserBean() {
+		super();
+		
+	}
+
+	public UserBean(int id, String username, int numberOfBooks, List<BookBean> books) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.numberOfBooks = numberOfBooks;
+		this.books = books;
+	}
+	
 	
 	
 }
