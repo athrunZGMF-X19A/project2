@@ -1,6 +1,7 @@
 package beans;
 
-import java.util.List;
+
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
@@ -28,7 +32,10 @@ public class UserBean {
 	@DecimalMin(value="0")
 	private int numberOfBooks;
 	
-	private List<BookBean> book;
+
+	@ManyToMany(mappedBy="UserBean")
+		private Set<BookBean> book;
+
 	
 	public UserBean() {
 		super();
@@ -59,13 +66,45 @@ public class UserBean {
 		this.numberOfBooks = numberOfBooks;
 	}
 
-	public List<BookBean> getBook() {
+
+
+	public Set<BookBean> getBook() {
 		return book;
 	}
 
-	public void setBook(List<BookBean> book) {
+	public void setBook(Set<BookBean> book) {
 		this.book = book;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numberOfBooks;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserBean other = (UserBean) obj;
+		if (numberOfBooks != other.numberOfBooks)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+
+
 	
 	
 }
