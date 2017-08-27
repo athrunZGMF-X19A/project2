@@ -11,20 +11,20 @@
 	<!-- datasource -->
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="" />
-		<property name="username" value="" />
-		<property name="password"  value="" />
+		<property name="url" value="#{systemEnvironment['DB_URL']}" />
+		<property name="username" value="Dewey_Duodecim" />
+		<property name="password"  value="Duodecim" />
 	
 	</bean>
 	<!-- sessionfactory -->
 	<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="beaanmvc" />
+		<property name="packagesToScan" value="beans" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.Oracle10Dialect
+					org.hibernate.dialect.Oracle10gDialect
 				</prop>
 			</props>
 		</property>
