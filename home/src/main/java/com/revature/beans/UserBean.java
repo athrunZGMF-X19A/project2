@@ -1,4 +1,4 @@
-package beans;
+package com.revature.beans;
 
 
 
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
@@ -21,7 +22,8 @@ public class UserBean {
 	@Id
 	@Min(value=0)
 	@Column(name="USER_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="User_id_seq")
+	@SequenceGenerator(name="User_id_seq", sequenceName= "USER_ID_SEQ")
 	private int id;
 	@NotBlank
 	private String username;

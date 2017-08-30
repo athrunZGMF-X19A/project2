@@ -1,4 +1,4 @@
-package controllers;
+package com.revature.controllers;
 
 import java.util.List;
 
@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import beans.BookBean;
-import daos.BookDAO;
+import com.revature.beans.BookBean;
+import com.revature.daos.BookDAO;
 
 
 @Controller
-@RequestMapping(value="/beans/UserBean")
 public class BookController {
 	
 	@Autowired
@@ -27,20 +26,23 @@ public class BookController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="beans/BookBean/createBook", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/books/createBook", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void createBook(@Valid @RequestBody BookBean book){
 		dao.createBook(book);
 	}
-	@RequestMapping(value="beans/BookBean/updateBook", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void updateBook(BookBean book){
+	@RequestMapping(value="/books/updateBook", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void updateBook(@Valid @RequestBody BookBean book){
 		dao.updateBook(book);
 	}
-	@RequestMapping(value="beans/BookBean/getAllBooks", method=RequestMethod.GET, consumes=MediaType.APPLICATION_JSON_VALUE)
+	//needs produce?
+	@RequestMapping(value="/books/getAllBooks", method=RequestMethod.GET, 
+			consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<BookBean> getAllBooks(){
 		return dao.getAllBooks();
 	}
-	@RequestMapping(value="beans/BookBean/deleteBook", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/books/deleteBook", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void deleteBook(BookBean book){
 		dao.deleteBook(book);
 	}

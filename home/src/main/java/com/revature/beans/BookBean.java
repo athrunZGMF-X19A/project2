@@ -1,4 +1,4 @@
-package beans;
+package com.revature.beans;
 
 
 import java.util.Set;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,7 +19,8 @@ public class BookBean {
 	
 	@Id
 	@Column(name="BOOK_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="book_id_seq")
+	@SequenceGenerator(name="book_id_seq", sequenceName="BOOK_ID_SEQ")
 	private int d3Id;
 	@NotBlank
 	private String title;
