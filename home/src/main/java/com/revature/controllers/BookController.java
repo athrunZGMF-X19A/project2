@@ -36,9 +36,9 @@ public class BookController {
 	public void updateBook(@Valid @RequestBody BookBean book){
 		dao.updateBook(book);
 	}
-	//needs produce?
+	
 	@RequestMapping(value="/books/getAllBooks", method=RequestMethod.GET, 
-			consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<BookBean> getAllBooks(){
 		return dao.getAllBooks();
 	}
