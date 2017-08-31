@@ -43,4 +43,6 @@
 	<bean name="UserDAO" class="com.revature.daos.UserDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+
 </beans>

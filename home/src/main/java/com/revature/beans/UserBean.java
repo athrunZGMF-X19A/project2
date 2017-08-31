@@ -20,6 +20,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class UserBean {
+	@Override
+	public String toString() {
+		return "UserBean [username=" + username + ", numberOfBooks=" + numberOfBooks + "]";
+	}
+
 	@Id
 	@Min(value=0)
 	@Column(name="USER_ID")
