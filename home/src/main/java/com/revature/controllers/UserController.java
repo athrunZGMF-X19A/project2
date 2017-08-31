@@ -1,4 +1,4 @@
-package controllers;
+package com.revature.controllers;
 
 import java.util.List;
 
@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import beans.UserBean;
-import daos.UserDAO;
+import com.revature.beans.UserBean;
+import com.revature.daos.UserDAO;
 
 @Controller
-@RequestMapping(value="/beans/UserBean")
 public class UserController {
 	
 	@Autowired
@@ -25,21 +24,22 @@ public class UserController {
 	public void setDao(UserDAO dao) {
 		this.dao = dao;
 	}
-	@RequestMapping(value="beans/UserBean/createUser", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="user/createUser", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void createUser(@Valid @RequestBody UserBean user){
 		dao.createUser(user);
 	}
 	
-	@RequestMapping(value="beans/UserBean/updateUser", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="user/updateUser", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void updateUser(UserBean user){
 		dao.updateUser(user);
 	}
-	@RequestMapping(value="beans/UserBean/getUsers", method=RequestMethod.GET, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="user/getUsers", method=RequestMethod.GET, 
+			consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<UserBean> getUsers(){
 		return dao.getUsers();
 	}
-	@RequestMapping(value="beans/UserBean/deleteUser", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="user/deleteUser", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void deleteUser(UserBean	user){
 		dao.deleteUser(user);
 	}
