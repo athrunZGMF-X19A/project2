@@ -1,4 +1,4 @@
-package daos;
+package com.revature.daos;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import beans.UserBean;
+import com.revature.beans.UserBean;
 
 public class UserDAO {
 
@@ -29,6 +29,7 @@ public class UserDAO {
 		}
 		
 		@SuppressWarnings("unchecked")
+		@Transactional(isolation=Isolation.READ_COMMITTED, rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 		public List<UserBean> getUsers(){
 			return sessionFactory.getCurrentSession().createQuery("FROM UserBean").list();
 		}

@@ -1,4 +1,4 @@
-package beans;
+package com.revature.beans;
 
 
 import java.util.Set;
@@ -10,15 +10,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class BookBean {
 	
+	@Override
+	public String toString() {
+		return "BookBean [d3Id=" + d3Id + ", title=" + title + ", author=" + author + ", description=" + description
+				+ ", genre=" + genre + ", quantity=" + quantity + ", user=" + user + "]";
+	}
+
 	@Id
 	@Column(name="BOOK_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="book_id_seq")
+	@SequenceGenerator(name="book_id_seq", sequenceName="BOOK_ID_SEQ")
 	private int d3Id;
 	@NotBlank
 	private String title;
