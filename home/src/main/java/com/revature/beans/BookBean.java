@@ -17,6 +17,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class BookBean {
 	
+	@Override
+	public String toString() {
+		return "BookBean [d3Id=" + d3Id + ", title=" + title + ", author=" + author + ", description=" + description
+				+ ", genre=" + genre + ", quantity=" + quantity + ", user=" + user + "]";
+	}
+
 	@Id
 	@Column(name="BOOK_ID")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="book_id_seq")
