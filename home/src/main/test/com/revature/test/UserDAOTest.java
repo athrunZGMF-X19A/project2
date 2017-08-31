@@ -16,10 +16,7 @@ private static ApplicationContext context;
 	public static void initialize(){
 		context = new ClassPathXmlApplicationContext("beans.xml");
 	}
-	@Test
-	public void beanTest(){
-		UserBean bean = context.getBean(UserBean.class);
-	}
+
 	@Test
 	public void DAOTest(){
 		UserDAO dao = context.getBean(UserDAO.class);
