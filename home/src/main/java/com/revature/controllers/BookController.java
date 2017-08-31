@@ -39,11 +39,13 @@ public class BookController {
 	
 	@RequestMapping(value="/books/getAllBooks", method=RequestMethod.GET, 
 			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public List<BookBean> getAllBooks(){
 		return dao.getAllBooks();
 	}
 	@RequestMapping(value="/books/deleteBook", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void deleteBook(BookBean book){
+	@ResponseBody
+	public void deleteBook(@RequestBody BookBean book){
 		dao.deleteBook(book);
 	}
 	

@@ -31,16 +31,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="user/updateUser", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void updateUser(UserBean user){
+	@ResponseBody
+	public void updateUser(@RequestBody UserBean user){
 		dao.updateUser(user);
 	}
 	@RequestMapping(value="user/getUsers", method=RequestMethod.GET, 
-			consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public List<UserBean> getUsers(){
 		return dao.getUsers();
 	}
 	@RequestMapping(value="user/deleteUser", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void deleteUser(UserBean	user){
+	@ResponseBody
+	public void deleteUser(@RequestBody UserBean user){
 		dao.deleteUser(user);
 	}
 	
