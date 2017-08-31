@@ -15,9 +15,7 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class BookBean {
