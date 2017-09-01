@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.DecimalMin;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -39,7 +40,7 @@ public class BookBean {
 	private String description;
 	@NotBlank
 	private String genre;
-	
+	@DecimalMin(value="1.0")
 	private int quantity;
 
 	

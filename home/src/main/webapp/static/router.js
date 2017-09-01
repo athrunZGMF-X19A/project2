@@ -28,7 +28,7 @@ theRouter.config(function($stateProvider, $urlRouterProvider){
 			url: '/management.html',
 			views:{
 				'': {templateUrl: "pages/library-management.html",  controller: 'getBooksController'},
-				'createColumn@library-mangement': {templateUrl: "pages/library-management.html", controller: 'createBooks'},
+				'createColumn@library-mangement': {templateUrl: "pages/library-management-create.html", controller: 'createBooks'},
 			}
 			
 		})

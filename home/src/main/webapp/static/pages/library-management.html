@@ -5,32 +5,54 @@
 <title>Management</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-<!-- <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script> -->
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<button class="btn btn-default">Add Books</button>
+
+	<div class="modal fade" id="bookAdd" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Add Book(s)</h4>
+				</div>
+				<div class="modal-body">Complete the following form:</div>
+				<div>
+					<form ng-submit="createBook()">
+							<input ng-model="book.title" type="text" class="form-control" placeholder="Title"> <br/>
+							<input ng-model="book.author" type="text" class="form-control" placeholder="Author"> <br/>
+							<!-- <textarea ng-model="book.description" rows="3" placeholder="Description" style="margin: 0px; width: 598px; height: 191px;"></textarea> -->
+							<input ng-model="book.description" type="text" class="form-control" placeholder="Description"> <br/>
+							<input ng-model="book.genre" type="text" class="form-control" placeholder="Genre"> <br/>
+							<input ng-model="book.quantity" type="number" class="form-control" placeholder="Quantity"> <br/> <!-- user can still pass 0 as a quantity, needs validation -->
+							<input class="btn btn-sm btn-primary" type="submit" value="Create Book"> <br/>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Book Management</h3>
+			<h3 class="panel-title">
+				Book Management <input type="search" placeholder="Search"> <!-- Filtering NYI -->
+				<span><button type="button"
+						class="btn btn-default btn-center" data-toggle="modal"
+						data-target="#bookAdd">Add Books</button></span>
+			</h3>
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-hover">
