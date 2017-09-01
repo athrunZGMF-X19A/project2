@@ -11,6 +11,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="../controller.js"></script>
 </head>
 <body>
 
@@ -26,15 +27,15 @@
 					<h4 class="modal-title" id="modalLabel">Add Book(s)</h4>
 				</div>
 				<div class="modal-body">Complete the following form:</div>
-				<div>
-					<form ng-submit="createBook()">
+				<div ng-controller="createBooks">
+					<form ng-submit="createBook()" action=".management">
 							<input ng-model="book.title" type="text" class="form-control" placeholder="Title"> <br/>
 							<input ng-model="book.author" type="text" class="form-control" placeholder="Author"> <br/>
 							<!-- <textarea ng-model="book.description" rows="3" placeholder="Description" style="margin: 0px; width: 598px; height: 191px;"></textarea> -->
 							<input ng-model="book.description" type="text" class="form-control" placeholder="Description"> <br/>
 							<input ng-model="book.genre" type="text" class="form-control" placeholder="Genre"> <br/>
 							<input ng-model="book.quantity" type="number" class="form-control" placeholder="Quantity"> <br/> <!-- user can still pass 0 as a quantity, needs validation -->
-							<input class="btn btn-sm btn-primary" type="submit" value="Create Book"> <br/>
+							<input class="btn btn-sm btn-primary" type="submit" value="Create Book" data-dismiss="modal"> <br/>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -46,13 +47,22 @@
 	</div>
 
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				Book Management <input type="search" placeholder="Search"> <!-- Filtering NYI -->
-				<span><button type="button"
-						class="btn btn-default btn-center" data-toggle="modal"
-						data-target="#bookAdd">Add Books</button></span>
-			</h3>
+		<div class="panel-heading text-center">
+			<h3 class="panel-title">Book Management <span><button type="button"
+						class="btn btn-sm btn-default" data-toggle="modal"
+						data-target="#bookAdd">Add Books</button></span></h3>
+						<br/>
+			<div class="text-center">
+				<input type="text" ng-model="search" placeholder="Search">
+			</div>
+			<br/>
+			<div class="btn-group">
+				<button class="btn btn-default" ng-click="order = 'd3Id'">Order By ID</button>
+				<button class="btn btn-default" ng-click="order = 'title'">Order By Title</button>
+				<button class="btn btn-default" ng-click="order = 'author'">Order By Author</button>
+				<button class="btn btn-default" ng-click="order = 'description'">Order By Description</button>
+				<button class="btn btn-default" ng-click="order = 'quantity'">Order By Quantity</button>
+			</div>
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-hover">
@@ -63,14 +73,18 @@
 					<th>Description</th>
 					<th>Genre</th>
 					<th>Quantity</th>
+					<th><b class="text-danger">Edit/<br/>Remove</b></th>
 				</tr>
-				<tr ng-repeat="b in allBooks">
+				<tr ng-repeat="b in allBooks | orderBy: order | filter: search">
 					<td>{{b.d3Id}}</td>
 					<td>{{b.title}}</td>
 					<td>{{b.author}}</td>
 					<td>{{b.description}}</td>
 					<td>{{b.genre}}</td>
 					<td>{{b.quantity}}</td>
+					<td><span class="update" ng-click="updateBook(b)"><i class="glyphicon glyphicon-pencil"></i></span>
+					<span class="remove" ng-click="deleteBook(b)"><i class="glyphicon glyphicon-remove"></i></span></td>
+					<!-- add update and remove functionality to controllers -->
 				</tr>
 			</table>
 		</div>
