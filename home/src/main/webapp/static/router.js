@@ -44,7 +44,7 @@ theRouter.controller('createBooks', function($scope, $http){
 });
 
 theRouter.controller("getBooksController", function($http, $scope){
-	$http.get("http://localhost:8080/home/getAllBooks").then(function(value){
+	$http.get("http://localhost:8080/home/getAllBooks").then(function(response){
 		$scope.allBooks = response.data;
 	})
 });

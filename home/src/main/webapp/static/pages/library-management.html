@@ -21,7 +21,11 @@
 <body>
 	<div class="row">
 		<div class="col-lg-12">
-			<div ui-view="createColumn"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<button class="btn btn-default">Add Books</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="panel panel-default">
@@ -35,6 +39,7 @@
 					<th>Title</th>
 					<th>Author</th>
 					<th>Description</th>
+					<th>Genre</th>
 					<th>Quantity</th>
 				</tr>
 				<tr ng-repeat="b in allBooks">
@@ -42,6 +47,7 @@
 					<td>{{b.title}}</td>
 					<td>{{b.author}}</td>
 					<td>{{b.description}}</td>
+					<td>{{b.genre}}</td>
 					<td>{{b.quantity}}</td>
 				</tr>
 			</table>
