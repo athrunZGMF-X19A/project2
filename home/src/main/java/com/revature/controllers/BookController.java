@@ -26,24 +26,24 @@ public class BookController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="/books/createBook", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/createBook", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void createBook(@Valid @RequestBody BookBean book){
 		dao.createBook(book);
 	}
-	@RequestMapping(value="/books/updateBook", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/updateBook", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void updateBook(@Valid @RequestBody BookBean book){
 		dao.updateBook(book);
 	}
 	
-	@RequestMapping(value="/books/getAllBooks", method=RequestMethod.GET, 
+	@RequestMapping(value="/getAllBooks", method=RequestMethod.GET, 
 			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<BookBean> getAllBooks(){
 		return dao.getAllBooks();
 	}
-	@RequestMapping(value="/books/deleteBook", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/deleteBook", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void deleteBook(@RequestBody BookBean book){
 		dao.deleteBook(book);
