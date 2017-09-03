@@ -1,4 +1,4 @@
-/*angular.module("libRouter", ["ng-route"]);
+/*angular.module("libRouter", ["ngRoute"]);
 angular.module("libRouter").config(function($locationProvider, $routeProvider){
 	$locationProvider.hashPrefix("");
 	$routeProvider.when("/management", {
