@@ -35,5 +35,4 @@ public class BookDAO {
 	public void deleteBook(BookBean book){
 		sessionFactory.getCurrentSession().delete(book);
 	}
-
 }
