@@ -48,4 +48,5 @@ public class BookController {
 	public void deleteBook(@RequestBody BookBean book){
 		dao.deleteBook(book);
 	}
+
 }

@@ -1,6 +1,6 @@
 theRouter.controller('createBooks', function($scope, $http){
 	$scope.createBook = function(){
-		$http.post("http://localhost:8080/home/createBook", $scope.book).then(function(value){
+		$http.post("/createBook", $scope.book).then(function(value){
 			window.alert("Book(s) Added");
 		})
 	}
@@ -8,7 +8,7 @@ theRouter.controller('createBooks', function($scope, $http){
 
 theRouter.controller('updateBook', function($scope, $http){
 	$scope.updateBook = function(){
-		$http.put("http://localhost:8080/home/updateBook", $scope.book).then(function(value){	
+		$http.put("/updateBook", $scope.book).then(function(value){	
 			window.alert("Book(s) Updated")
 		})
 	}
@@ -16,7 +16,7 @@ theRouter.controller('updateBook', function($scope, $http){
 
 theRouter.controller('deleteBook', function($scope, $http){
 	$scope.deleteBook = function(){
-		$http.delete("http://localhost:8080/home/deleteBook").then(function(value){
+		$http.delete("/deleteBook").then(function(value){
 			window.alert("Book(s) Deleted")
 		})
 	}

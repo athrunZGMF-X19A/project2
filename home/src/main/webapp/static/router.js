@@ -34,14 +34,14 @@ theRouter.config(function($stateProvider, $urlRouterProvider){
 
 theRouter.controller('createBooks', function($scope, $http){
 	$scope.createBook = function(){
-		$http.post("http://localhost:8080/home/createBook", $scope.book).then(function(value){
+		$http.post("/createBook", $scope.book).then(function(value){
 			window.alert("Book(s) Added");
 		})
 	}
 });
 
 theRouter.controller("getBooksController", function($http, $scope){
-	$http.get("http://localhost:8080/home/getAllBooks").then(function(response){
+	$http.get("/getAllBooks").then(function(response){
 		$scope.allBooks = response.data;
 	})
 });
