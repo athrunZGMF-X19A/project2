@@ -38,6 +38,23 @@ public class BookController {
 		dao.updateBook(book);
 	}
 	
+	@RequestMapping(value="/updateBookById/{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void updateBookById(@PathVariable("id") int id, BookBean book){
+		BookBean currentBook = dao.findBookById(id);
+		if(currentBook == null){
+			System.out.println("Book Not Found");
+		}
+		
+		currentBook.setTitle(book.getTitle());
+		currentBook.setAuthor(book.getAuthor());
+		currentBook.setDescription(book.getDescription());
+		currentBook.setGenre(book.getGenre());
+		currentBook.setQuantity(book.getQuantity());
+		
+		dao.updateBook(currentBook);
+	}
+	
 	@RequestMapping(value="/getAllBooks", method=RequestMethod.GET, 
 			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

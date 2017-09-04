@@ -17,7 +17,7 @@ Failure of an ng-route
 var theRouter = angular.module('theRouter',['ui.router']);
 
 theRouter.config(function($stateProvider, $urlRouterProvider){
-	$urlRouterProvider.otherwise('');
+	$urlRouterProvider.otherwise('/home.html');
 	
 	$stateProvider
 		.state('home', {
@@ -34,6 +34,15 @@ theRouter.config(function($stateProvider, $urlRouterProvider){
 			templateUrl: "pages/users.html",
 			controller: 'getUsersController'
 			
+		})
+		.state('checkedout', {
+			url: '/checkedout.html',
+			templateUrl: "pages/library-checkedout.html",
+			
+		})
+		.state('about', {
+			url: "/about.html",
+			templateUrl: "pages/about.html"
 		})
 });
 

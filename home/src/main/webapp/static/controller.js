@@ -8,7 +8,7 @@ theRouter.controller('createBooks', function($scope, $http){
 
 theRouter.controller('updateBook', function($scope, $http){
 	$scope.updateBook = function(){
-		$http.put("/updateBook", $scope.book).then(function(value){	
+		$http.put("/updateBookById/{id}", $scope.book.d3Id ,$scope.book).then(function(value){	
 			window.alert("Book(s) Updated")
 		})
 	}
