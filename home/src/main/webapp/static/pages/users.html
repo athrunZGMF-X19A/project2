@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="../controller.js"></script>
+</head>
+<body>
+
+
+<!-- ADD User MODAL -->
+	<div class="modal fade" id="userAdd" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Add User(s)</h4>
+				</div>
+				<div class="modal-body">Complete the following form:</div>
+				<div ng-controller="createUsers">
+					<form ng-submit="createUsers()" action="">
+						<input ng-model="user.username" type="text" class="form-control"
+							placeholder="Username"> <br /> 
+						<input ng-model="user.numberOfBooks"
+							type="text" class="form-control" placeholder="Number of Books"> <br />
+						
+						<!-- user can still pass 0 as a quantity, needs validation -->
+						<input class="btn btn-sm btn-primary" type="submit"
+							value="Create User"> <br />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+<!-- UPDATE user MODAL -->
+<div class="modal fade" id="updateUserModal" tabindex="-1"
+		role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Update User(s)</h4>
+				</div>
+				<div class="modal-body">Complete the following form:</div>
+				<div ng-controller="updateUser">
+					<form ng-submit="updateUser()" action="">
+						<input ng-model="user.id" class="form-control" type="text"
+							placeholder="User Id"> <br />
+						<input
+							ng-model="user.username" type="text" class="form-control"
+							placeholder="Username"> <br /> 
+						<input ng-model="user.numberOfBooks"
+							type="text" class="form-control" 
+							placeholder="Number of books"> <br />
+						
+						<!-- user can still pass 0 as a quantity, needs validation -->
+						<input class="btn btn-sm btn-primary" type="submit"
+							value="Update User"> <br />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<h3 class="panel-title">
+				User Management <span><button type="button"
+						class="btn btn-sm btn-default" data-toggle="modal"
+						data-target="#userAdd">Add User</button></span>
+			</h3>
+			<br />
+			<div class="text-center">
+				<input type="text" ng-model="search" placeholder="Search">
+			</div>
+			<br />
+			<div class="btn-group">
+				<button class="btn btn-default" ng-click="order = 'id'">Order
+					By ID</button>
+				<button class="btn btn-default" ng-click="order = 'username'">Order
+					By Username</button>
+				<button class="btn btn-default" ng-click="order = 'numberOfBooks'">Order
+					By Number of Books</button>
+				
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>User ID</th>
+					<th>Username</th>
+					<th>Number of books</th>
+
+					<th><b class="text-danger">Edit/<br />Remove
+					</b></th>
+				</tr>
+				<tr ng-repeat="u in allUsers | orderBy: order | filter: search">
+					<td>{{u.id}}</td>
+					<td>{{u.username}}</td>
+					<td>{{u.numberOfBooks}}</td>
+
+					<td><button class="btn btn-default" type="button"
+							data-toggle="modal" data-target="#updateUserModal">
+							<i class="glyphicon glyphicon-pencil text-success"></i>
+						</button>
+						<button class="btn btn-default" type="button" data-toggle="modal"
+							data-target="#deleteUserModal">
+							<i class="glyphicon glyphicon-remove text-danger"></i>
+						</button></td>
+					<!-- add update and remove functionality to controllers -->
+				</tr>
+			</table>
+		</div>
+		</div>
+</body>
+</html>
