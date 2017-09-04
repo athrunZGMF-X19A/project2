@@ -17,7 +17,6 @@ public class BookDAO {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	//needs annotations
 	@Transactional(isolation=Isolation.READ_COMMITTED, rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public void createBook(BookBean book){
 		sessionFactory.getCurrentSession().save(book);
