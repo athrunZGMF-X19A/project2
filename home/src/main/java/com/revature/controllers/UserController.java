@@ -24,23 +24,26 @@ public class UserController {
 	public void setDao(UserDAO dao) {
 		this.dao = dao;
 	}
-	@RequestMapping(value="user/createUser", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/createUser", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public void createUser(@Valid @RequestBody UserBean user){
 		dao.createUser(user);
 	}
 	
-	@RequestMapping(value="user/updateUser", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void updateUser(UserBean user){
+	@RequestMapping(value="/updateUser", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void updateUser(@RequestBody UserBean user){
 		dao.updateUser(user);
 	}
-	@RequestMapping(value="user/getUsers", method=RequestMethod.GET, 
-			consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/getUsers", method=RequestMethod.GET, 
+			/*consumes=MediaType.APPLICATION_JSON_VALUE,*/ produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public List<UserBean> getUsers(){
 		return dao.getUsers();
 	}
-	@RequestMapping(value="user/deleteUser", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void deleteUser(UserBean	user){
+	@RequestMapping(value="/deleteUser", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteUser(@RequestBody UserBean user){
 		dao.deleteUser(user);
 	}
 	

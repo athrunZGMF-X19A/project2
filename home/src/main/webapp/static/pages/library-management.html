@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Management</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="../controller.js"></script>
+</head>
+<body>
+	<!-- ADD BOOK MODAL -->
+	<div class="modal fade" id="bookAdd" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Add Book(s)</h4>
+				</div>
+				<div class="modal-body">Complete the following form:</div>
+				<div ng-controller="createBooks">
+					<form ng-submit="createBook()" action="">
+							<input ng-model="book.title" type="text" class="form-control" placeholder="Title"> <br/>
+							<input ng-model="book.author" type="text" class="form-control" placeholder="Author"> <br/>
+							<input ng-model="book.description" type="text" class="form-control" placeholder="Description"> <br/>
+							<input ng-model="book.genre" type="text" class="form-control" placeholder="Genre"> <br/>
+							<input ng-model="book.quantity" type="number" class="form-control" placeholder="Quantity"> <br/> <!-- user can still pass 0 as a quantity, needs validation -->
+							<input class="btn btn-sm btn-primary" type="submit" value="Create Book" > <br/>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- UPDATE BOOK MODAL -->
+	<div class="modal fade" id="updateBookModal" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Update Book(s)</h4>
+				</div>
+				<div class="modal-body">Complete the following form:</div>
+				<div ng-controller="updateBook" >
+					<form ng-submit="updateBook()" action="">
+							<input ng-model="book.d3Id" class="form-control" type="text" placeholder="Book Id"> <br/>
+							<input ng-model="book.title" type="text" class="form-control" placeholder="Title"> <br/>
+							<input ng-model="book.author" type="text" class="form-control" placeholder="Author"> <br/>
+							<input ng-model="book.description" type="text" class="form-control" placeholder="Description"> <br/>
+							<input ng-model="book.genre" type="text" class="form-control" placeholder="Genre"> <br/>
+							<input ng-model="book.quantity" type="number" class="form-control" placeholder="Quantity"> <br/> <!-- user can still pass 0 as a quantity, needs validation -->
+							<input class="btn btn-sm btn-primary" type="submit" value="Update Book" > <br/>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- DELETE BOOK MODAL -->
+	<div class="modal fade" id="deleteBookModal" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Remove Book(s)</h4>
+				</div>
+				<div class="modal-body"><h4 class="text-center">Confirm Deletion</h4></div>
+				<div ng-controller="deleteBook" class="text-center" >
+					<form ng-submit="deleteBook()" action="" >
+						<input class="btn btn-md btn-danger" type="submit" value="Remove Book"></input> <br/>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<h3 class="panel-title">Book Management <span><button type="button"
+						class="btn btn-sm btn-default" data-toggle="modal"
+						data-target="#bookAdd">Add Books</button></span></h3>
+						<br/>
+			<div class="text-center">
+				<input type="text" ng-model="search" placeholder="Search">
+			</div>
+			<br/>
+			<div class="btn-group">
+				<button class="btn btn-default" ng-click="order = 'd3Id'">Order By ID</button>
+				<button class="btn btn-default" ng-click="order = 'title'">Order By Title</button>
+				<button class="btn btn-default" ng-click="order = 'author'">Order By Author</button>
+				<button class="btn btn-default" ng-click="order = 'description'">Order By Description</button>
+				<button class="btn btn-default" ng-click="order = 'quantity'">Order By Quantity</button>
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th>Book ID</th>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Description</th>
+					<th>Genre</th>
+					<th>Quantity</th>
+					<th><b class="text-danger">Edit/<br/>Remove</b></th>
+				</tr>
+				<tr ng-repeat="b in allBooks | orderBy: order | filter: search">
+					<td>{{b.d3Id}}</td>
+					<td>{{b.title}}</td>
+					<td>{{b.author}}</td>
+					<td>{{b.description}}</td>
+					<td>{{b.genre}}</td>
+					<td>{{b.quantity}}</td>
+					<td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#updateBookModal"><i class="glyphicon glyphicon-pencil text-success"></i></button>
+					<button class="btn btn-default" type="button" data-toggle="modal" data-target="#deleteBookModal" ><i class="glyphicon glyphicon-remove text-danger"></i></button></td>
+					<!-- add update and remove functionality to controllers -->
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class UserBean {
 	private int numberOfBooks;
 	
 
-	@ManyToMany(mappedBy="user")
+	@ManyToMany(fetch=FetchType.EAGER, mappedBy="user")
 	private Set<BookBean> book;
 
 	
