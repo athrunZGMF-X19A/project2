@@ -52,7 +52,7 @@ theRouter.controller("getBooksController", function($http, $scope){
 });
 
 theRouter.controller("getUsersController", function($http, $scope){
-	$http.get("http://localhost:9999/home/getUsers").then(function(response){
+	$http.get("/getUsers").then(function(response){
 		$scope.allUsers = response.data;
 	})
 });
