@@ -21,3 +21,21 @@ theRouter.controller('deleteBook', function($scope, $http){
 		})
 	}
 })
+
+
+theRouter.controller('createUsers', function($scope, $http){
+	$scope.createUsers = function(){
+		$http.post("/createUser", $scope.user).then(function(value){
+			window.alert("User Added");
+		})
+	}
+});
+
+theRouter.controller('updateUser', function($scope, $http){
+	$scope.updateUser = function(){
+		$http.put("/updateUser", $scope.user).then(function(value){	
+			window.alert("User Updated")
+		})
+	}
+});
+

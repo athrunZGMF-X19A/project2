@@ -29,7 +29,12 @@ theRouter.config(function($stateProvider, $urlRouterProvider){
 			templateUrl: "pages/library-management.html",
 			controller: 'getBooksController'
 		})
-		.state
+		.state('users',{
+			url: '/users.html',
+			templateUrl: "pages/users.html",
+			controller: 'getUsersController'
+			
+		})
 });
 
 theRouter.controller('createBooks', function($scope, $http){
@@ -45,3 +50,11 @@ theRouter.controller("getBooksController", function($http, $scope){
 		$scope.allBooks = response.data;
 	})
 });
+
+theRouter.controller("getUsersController", function($http, $scope){
+	$http.get("http://localhost:9999/home/getUsers").then(function(response){
+		$scope.allUsers = response.data;
+	})
+});
+
+
