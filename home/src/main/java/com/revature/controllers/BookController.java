@@ -40,7 +40,7 @@ public class BookController {
 	
 	@RequestMapping(value="/updateBookById/{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public void updateBookById(@PathVariable("id") int id, BookBean book){
+	public void updateBookById(@PathVariable("id") int id, @RequestBody BookBean book){
 		BookBean currentBook = dao.findBookById(id);
 		if(currentBook == null){
 			System.out.println("Book Not Found");
